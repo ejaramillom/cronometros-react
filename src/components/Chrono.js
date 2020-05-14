@@ -6,8 +6,8 @@ import { Card, Button, CardText } from 'reactstrap';
 
 class Chrono extends React.Component{
 
-  constructor(){
-    super()
+  constructor( props ){
+    super( props )
     this.state ={
         time: 0,
         status: 'Paused'
@@ -16,14 +16,14 @@ class Chrono extends React.Component{
 
   start = () => {
     this.intervalHandler = setInterval(() => {
-      const time = this.state.time + 100
+      const interval = this.state.time + 100
       this.setState({
-        time: time
+        time: interval
       })
     }, 100)
 
     this.setState({
-      status: 'Active'
+      status: 'Active',
     });
   }
 
@@ -56,7 +56,6 @@ class Chrono extends React.Component{
         />
         <CardText className="btn-align ">
           <Button variant="light" className = "my-2 mx-2" color = "danger" onClick={ this.props.onDelete }>Borrar </Button>
-          <Button variant="light" className = "my-2 mx-2" color = "success" onClick={ this.props.onEdit }>Editar </Button>
         </CardText>
       </Card>
     </div> )
