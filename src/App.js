@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Chrono from './components/Chrono';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Row, Col, Card, CardBody, CardTitle, CardSubtitle, ListGroupItem, FormGroup, Label, Form, Button, ButtonGroup, ListGroup, Input } from 'reactstrap';
+import { Row, Col, Container, Card, CardBody, CardTitle, CardSubtitle, ListGroupItem, FormGroup, Label, Form, Button, Input } from 'reactstrap';
 import './App.css';
 
 class App extends Component {
@@ -127,8 +127,8 @@ class App extends Component {
     const edits =
       <div>
         { this.state.edit.map(( edit ) =>
-          <div className = "row">
-            <div className = "col-sm-6 col-sm-offset-6 mx-auto">
+          <Row>
+            <Col sm = {{ size: 12 }}>
               <Form onSubmit={ this.handleEdit.bind( this, edit.id )} key = { edit.id }>
                 <ListGroupItem >
                   <FormGroup >
@@ -137,87 +137,68 @@ class App extends Component {
                     <Label >Proyecto </Label>
                     <Input type = "text" placeholder = { edit.project } onChange = { this.editProjectChange } required/>
                   </FormGroup>
-                  <ButtonGroup bsSize = "large">
-                    <Button type = "submit" bsStyle="primary" >Actualizar </Button>
-                    <Button onClick = { this.editCancel.bind( this ) } bsStyle="danger">Cancelar </Button>
-                  </ButtonGroup>
+                    <Button type = "submit" color="primary" className = "mx-3">Actualizar </Button>
+                    <Button onClick = { this.editCancel.bind( this ) } color="danger">Cancelar </Button>
                 </ListGroupItem>
               </Form>
-            </div>
-          </div>
+            </Col>
+          </Row>
         )}
-      </div>
+      </div>;
 
     return (
-      <div className = "container">
-        <div className = "row">
-          <div className = "col-sm-6 col-sm-offset-6 mx-auto">
-          <h1 className = "text-center"> Cronómetros | La app </h1>
-            <Form onSubmit = { this.add.bind( this ) } >
-              <div className = 'form-group'>
-                <label htmlFor = "title">Titulo </label>
-                <input type = "text" className = "form-control" name = "title" />
-              </div>
-              <div className = 'form-group'>
-                <label htmlFor = "project">Proyecto </label>
-                <input type = "text" className = "form-control" name = "project" />
-              </div>
-              <div className = "flex-container">
-                <div className = "item text-center my-3">
-                  <button type = "submit" className = "btn btn-primary" name = "go_ahead">Crear </button>
+      <Container>
+        <Row>
+          <Col sm = {{ size: 6, offset: 3 }}>
+            <h1 className = "text-center"> Cronómetros | La app </h1>
+              <Form onSubmit = { this.add.bind( this ) } >
+                <div className = 'form-group'>
+                  <label htmlFor = "title">Titulo </label>
+                  <input type = "text" className = "form-control" name = "title" />
                 </div>
-                <div className = "item text-center my-3">
-                  <button type = "submit" className = "btn btn-secondary" name = "not_ahead" value = { this.state.cancel } onClick = { this.handleCancel.bind( this )}>Cancelar </button>
+                <div className = 'form-group'>
+                  <label htmlFor = "project">Proyecto </label>
+                  <input type = "text" className = "form-control" name = "project" />
                 </div>
-              </div>
-            </Form>
-          </div>
-        </div>
+                <div className = "flex-container">
+                  <div className = "item text-center my-3">
+                    <button type = "submit" className = "btn btn-primary" name = "go_ahead">Crear </button>
+                  </div>
+                  <div className = "item text-center my-3">
+                    <button type = "submit" className = "btn btn-secondary" name = "not_ahead" value = { this.state.cancel } onClick = { this.handleCancel.bind( this )}>Cancelar </button>
+                  </div>
+                </div>
+              </Form>
+          </Col>
+        </Row>
 
         { this.state.chronos.map (( chrono, id ) =>
           <Row key = { id }>
-            <Col md={6} mdOffset={6} mx-auto>
+            <Col sm = {{ size: 6, offset: 3 }} className = "my-4">
               <Form>
-              <Card>
-                <CardBody>
-                  <CardTitle><strong>{ chrono.title }</strong></CardTitle>
-                  <CardSubtitle className = "mb-2 text-muted">{ chrono.project }</CardSubtitle>
-                  <Chrono
-                    chrono = { chrono }
-                    id = { id }
-                    onDelete = {() => this.delete( id )}
-                  />
-                </CardBody>
-                <Button onClick = { this.edit.bind( this, id ) } bsStyle = "success">Editar </Button>
-              </Card>
+                <Card>
+                  <CardBody>
+                    <CardTitle><strong>{ chrono.title }</strong></CardTitle>
+                    <CardSubtitle className = "mb-2 text-muted">{ chrono.project }</CardSubtitle>
+                    <Chrono
+                      chrono = { chrono }
+                      id = { id }
+                      onDelete = {() => this.delete( id )}
+                    />
+                  </CardBody>
+                  <Button onClick = { this.edit.bind( this, id ) } bsStyle = "success">Editar </Button>
+                </Card>
               </Form>
             </Col>
           </Row>
         )}
 
         <Row>
-          <Col md = { 6 } mdOffset = { 6 }>
-            <ListGroup>
-              <div>
+          <Col sm = {{ size: 6, offset: 3 }} className = "my-4">
                 { edits }
-              </div>
-            </ListGroup>
           </Col>
         </Row>
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
+      </Container>
     )
   }
 }
