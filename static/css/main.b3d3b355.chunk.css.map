@@ -1,0 +1,1 @@
+{"version":3,"sources":["App.css"],"names":[],"mappings":"AAAA,KACE,QAAQ,CACR,SACF,CAEA,WACE,WAAY,CACZ,UAAW,CACX,WACF","file":"main.b3d3b355.chunk.css","sourcesContent":["body {\n  margin:0;\n  padding: 0;\n}\n\nbutton.fas {\n  border: none;\n  width: 50px;\n  height: 50px;\n}\n"]}
